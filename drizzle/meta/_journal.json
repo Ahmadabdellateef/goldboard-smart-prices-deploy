@@ -8,6 +8,20 @@
       "when": 1788785580464,
       "tag": "0000_initial_users",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1793207088293,
+      "tag": "0001_plain_wolverine",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1793207386856,
+      "tag": "0002_far_pet_avengers",
+      "breakpoints": true
     }
   ]
 }
