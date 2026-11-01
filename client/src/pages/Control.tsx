@@ -2,7 +2,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { ArrowRight, Check, Eye, EyeOff, FileText, LayoutDashboard, LogOut, Monitor, Plus, Save, Store, Trash2, Upload } from "lucide-react";
 import { Link } from "wouter";
 import { toast } from "sonner";
-import { onAuthStateChanged, signInWithPopup, signOut, type User } from "firebase/auth";
+import { onAuthStateChanged, signInWithRedirect, signOut, type User } from "firebase/auth";
 import { auth, googleProvider } from "@/lib/firebase";
 import { defaultBoard, saveBoard, subscribeToBoard, type BoardData, type Rate } from "@/lib/goldboard";
 
@@ -14,7 +14,7 @@ export default function Control() {
   const [user, setUser] = useState<User | null>(null); const [authLoading, setAuthLoading] = useState(true); const [draft, setDraft] = useState<Draft>(defaultBoard); const [saved, setSaved] = useState(false); const [loading, setLoading] = useState(true); const [saving, setSaving] = useState(false);
   useEffect(() => onAuthStateChanged(auth, current => { setUser(current); setAuthLoading(false); }), []);
   useEffect(() => subscribeToBoard(data => { setDraft(data); setLoading(false); }, () => setLoading(false)), []);
-  const signIn = async () => { try { await signInWithPopup(auth, googleProvider); } catch { toast.error("تعذر تسجيل الدخول بحساب Google."); } };
+  const signIn = async () => { try { await signInWithRedirect(auth, googleProvider); } catch { toast.error("تعذر تسجيل الدخول بحساب Google."); } };
   const updateSetting = (key: keyof Draft["settings"], value: string | null) => { setSaved(false); setDraft(current => ({ ...current, settings: { ...current.settings, [key]: value } })); };
   const updateRate = (index: number, key: keyof Rate, value: string | boolean) => { setSaved(false); setDraft(current => ({ ...current, rates: current.rates.map((rate, i) => i === index ? { ...rate, [key]: value } : rate) })); };
   const addRate = () => setDraft(current => ({ ...current, rates: [...current.rates, { label: "ذهب عيار جديد", karat: "20K", price: "0.00", change: "0.00", isVisible: true }] }));
