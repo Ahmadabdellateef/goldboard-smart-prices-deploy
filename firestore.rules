@@ -4,7 +4,8 @@ service cloud.firestore {
     match /goldboard/main {
       allow read: if true;
       allow write: if request.auth != null
-        && request.auth.token.email == 'ahmadabdullateef03@gmail.com';
+        && (request.auth.token.email == 'ahmadabdullateef03@gmail.com'
+          || request.auth.token.email == 'kheedmah1@gmail.com');
     }
   }
 }
