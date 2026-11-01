@@ -7,7 +7,7 @@ import { auth, googleProvider } from "@/lib/firebase";
 import { defaultBoard, saveBoard, subscribeToBoard, type BoardData, type Rate } from "@/lib/goldboard";
 
 type Draft = BoardData;
-const ADMIN_EMAIL = "kheedmah1@gmail.com";
+const ADMIN_EMAIL = "ahmadabdullateef03@gmail.com";
 function Field({ label, value, onChange, placeholder, type = "text" }: { label: string; value: string; onChange: (value: string) => void; placeholder?: string; type?: string }) { return <label className="control-field"><span>{label}</span><input value={value} type={type} onChange={event => onChange(event.target.value)} placeholder={placeholder} /></label>; }
 
 export default function Control() {
