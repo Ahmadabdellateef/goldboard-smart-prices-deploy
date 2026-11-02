@@ -93,8 +93,8 @@ button { border: 0; }
 .rates-index, .section-number, .info-card-number { color: #d7a54a; font: 600 11px Manrope, sans-serif; letter-spacing: .12em; }
 .rates-heading h3 { margin: 0; font-size: 17px; font-weight: 500; }
 .unit-label { color: #9c8f80; font-size: 12px; }
-.rates-list { display: grid; }
-.rate-row { display: grid; grid-template-columns: 44px minmax(150px, 1fr) minmax(165px, .7fr) 90px; align-items: center; gap: 18px; min-height: 93px; border-bottom: 1px solid rgba(255,245,227,.11); transition: background .25s ease; }
+.rates-list { display: grid; overflow-x: auto; }
+.rate-row { display: grid; grid-template-columns: 44px minmax(150px, 1fr) minmax(130px, .62fr) minmax(130px, .62fr) 90px; align-items: center; gap: 18px; min-width: 650px; min-height: 93px; border-bottom: 1px solid rgba(255,245,227,.11); transition: background .25s ease; }
 .rate-row:hover { background: rgba(255,255,255,.035); }
 .rate-row-featured { margin-inline: -20px; padding-inline: 20px; background: linear-gradient(90deg, rgba(215,165,74,.09), transparent 70%); border-bottom-color: rgba(215,165,74,.38); }
 .rate-number { color: #74695c; font: 600 11px Manrope, sans-serif; }
@@ -102,6 +102,8 @@ button { border: 0; }
 .rate-name strong { font-size: clamp(16px, 1.5vw, 22px); font-weight: 500; }
 .rate-karat { color: #d7a54a; font: 700 11px Manrope, sans-serif; letter-spacing: .1em; direction: ltr; text-align: right; }
 .rate-price-wrap { display: flex; align-items: baseline; gap: 8px; direction: rtl; }
+.rate-price-label { color: #d7a54a; font-size: 10px; font-weight: 600; }
+.rate-price-buy .rate-price-label { color: #c5b8a8; }
 .rate-price { font: 700 clamp(22px, 2.2vw, 34px)/1 Manrope, sans-serif; letter-spacing: -.05em; color: #fbf4e8; }
 .rate-currency { color: #a99d8e; font-size: 11px; }
 .rate-change { display: inline-flex; align-items: center; justify-content: end; gap: 6px; font: 600 12px Manrope, sans-serif; direction: ltr; }
@@ -257,7 +259,7 @@ button { border: 0; }
   .display-side-column { padding-top: 42px; display: grid; grid-template-columns: 1fr 1fr; }
   .featured-card { min-height: 260px; grid-row: span 2; }
   .display-note { grid-column: 1 / -1; }
-  .rate-row { grid-template-columns: 30px minmax(110px, 1fr) minmax(125px, .8fr); gap: 10px; min-height: 85px; }
+  .rate-row { grid-template-columns: 30px minmax(110px, 1fr) minmax(120px, .8fr) minmax(120px, .8fr) 75px; gap: 10px; min-height: 85px; }
   .rate-change { display: none; }
   .rate-row-featured { margin-inline: -8px; padding-inline: 8px; }
   .display-footer { gap: 15px; }

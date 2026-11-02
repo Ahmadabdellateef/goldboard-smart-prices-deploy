@@ -10,7 +10,9 @@ import { firestore } from "./firebase";
 export type Rate = {
   label: string;
   karat: string;
-  price: string;
+  sellPrice: string;
+  buyPrice: string;
+  price?: string;
   change: string;
   isVisible: boolean;
 };
@@ -56,10 +58,10 @@ export const defaultBoard: BoardData = {
     logoUrl: null,
   },
   rates: [
-    { label: "ذهب عيار 24", karat: "24K", price: "0.00", change: "0.00", isVisible: true },
-    { label: "ذهب عيار 22", karat: "22K", price: "0.00", change: "0.00", isVisible: true },
-    { label: "ذهب عيار 21", karat: "21K", price: "0.00", change: "0.00", isVisible: true },
-    { label: "ذهب عيار 18", karat: "18K", price: "0.00", change: "0.00", isVisible: true },
+    { label: "ذهب عيار 24", karat: "24K", sellPrice: "0.00", buyPrice: "0.00", change: "0.00", isVisible: true },
+    { label: "ذهب عيار 22", karat: "22K", sellPrice: "0.00", buyPrice: "0.00", change: "0.00", isVisible: true },
+    { label: "ذهب عيار 21", karat: "21K", sellPrice: "0.00", buyPrice: "0.00", change: "0.00", isVisible: true },
+    { label: "ذهب عيار 18", karat: "18K", sellPrice: "0.00", buyPrice: "0.00", change: "0.00", isVisible: true },
   ],
 };
 
@@ -75,7 +77,8 @@ function normalizeBoard(raw: Record<string, unknown>): BoardData {
       return {
         label: String(rate.label ?? "ذهب عيار جديد"),
         karat: String(rate.karat ?? "20K"),
-        price: String(rate.price ?? "0.00"),
+        sellPrice: String(rate.sellPrice ?? rate.price ?? "0.00"),
+        buyPrice: String(rate.buyPrice ?? rate.price ?? "0.00"),
         change: String(rate.change ?? "0.00"),
         isVisible: rate.isVisible !== false,
       };
