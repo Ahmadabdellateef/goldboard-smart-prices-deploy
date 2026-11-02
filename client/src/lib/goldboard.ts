@@ -33,6 +33,16 @@ export type BoardData = {
   updatedAt?: Date;
 };
 
+export const CURRENCY_OPTIONS = [
+  { value: "ليرة سورية", label: "الليرة السورية", code: "SYP" },
+  { value: "دولار أمريكي", label: "الدولار الأمريكي", code: "USD" },
+  { value: "يورو", label: "اليورو", code: "EUR" },
+  { value: "ليرة تركية", label: "الليرة التركية", code: "TRY" },
+  { value: "ريال سعودي", label: "الريال السعودي", code: "SAR" },
+  { value: "درهم إماراتي", label: "الدرهم الإماراتي", code: "AED" },
+  { value: "جنيه إسترليني", label: "الجنيه الإسترليني", code: "GBP" },
+];
+
 export const defaultBoard: BoardData = {
   settings: {
     storeName: "دار لُجين للمجوهرات",

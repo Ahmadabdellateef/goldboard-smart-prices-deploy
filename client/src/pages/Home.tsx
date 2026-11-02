@@ -14,7 +14,7 @@ function formatTime(value?: Date) {
 }
 function GoldMark({ logoUrl, size = "normal" }: { logoUrl?: string | null; size?: "normal" | "large" }) {
   if (logoUrl) return <img src={logoUrl} alt="شعار المحل" className={`brand-mark brand-mark-${size} brand-mark-image`} />;
-  return <div className={`brand-mark brand-mark-${size}`} aria-label="شعار المحل"><span>ل</span><i /></div>;
+  return <svg className={`brand-mark-svg brand-mark-${size}`} viewBox="0 0 100 100" role="img" aria-label="شعار المحل"><path d="M50 8 88 30v40L50 92 12 70V30Z" /><path d="m50 8 0 84M12 30l38 22 38-22M12 70l38-18 38 18M50 52 72 39v26L50 78Z" /></svg>;
 }
 
 export default function Home() {

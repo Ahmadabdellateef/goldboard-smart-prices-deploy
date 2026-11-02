@@ -303,3 +303,29 @@ button { border: 0; }
   .login-card h1 { font-size: 31px; }
   .field-grid { grid-template-columns: 1fr; gap: 0; }
 }
+
+
+/* Store identity refresh: black, ivory and geometric gold facets inspired by the supplied packaging. */
+.brand-mark-svg { display: block; flex: 0 0 auto; width: 46px; height: 46px; padding: 7px; color: #f4b928; background: #111; border: 1px solid rgba(244,185,40,.55); border-radius: 8px; box-shadow: 0 0 0 3px rgba(244,185,40,.08); }
+.brand-mark-svg path { fill: none; stroke: currentColor; stroke-width: 5; stroke-linejoin: bevel; }
+.brand-mark-large { width: 72px; height: 72px; padding: 10px; }
+.display-page { background: #111; }
+.display-noise { opacity: .08; background-image: linear-gradient(135deg, rgba(244,185,40,.16) 25%, transparent 25%, transparent 50%, rgba(244,185,40,.16) 50%, rgba(244,185,40,.16) 75%, transparent 75%); background-size: 18px 18px; mask-image: linear-gradient(to bottom, black, transparent 92%); }
+.display-header { border-bottom-color: rgba(244,185,40,.26); }
+.display-brand h1 { font-weight: 600; }
+.eyebrow-gold, .rates-index, .section-number, .info-card-number, .rate-karat { color: #f4b928; }
+.primary-button { color: #111; background: #f4b928; box-shadow: 0 4px 16px rgba(244,185,40,.2); }
+.primary-button:hover { background: #ffd45e; }
+.featured-card { background: #f4b928; }
+.control-sidebar, .login-page { background: #101010; }
+.control-sidebar-brand { border-bottom-color: rgba(244,185,40,.22); }
+.sidebar-mark, .login-mark { background: #111; color: #f4b928; border: 1px solid rgba(244,185,40,.6); border-radius: 8px; box-shadow: 0 0 0 3px rgba(244,185,40,.08); }
+.sidebar-mark span, .login-mark span { font-size: 25px; font-weight: 500; }
+.control-nav-item:hover, .control-nav-item.is-active { background: rgba(244,185,40,.1); border-right-color: #f4b928; }
+.control-intro h2 em, .stat-path, .panel-title > svg, .upload-button { color: #b48208; }
+.control-field select { width: 100%; padding: 10px 11px; color: #3d3023; background: #fbf8f1; border: 1px solid #e6dccd; border-radius: 4px; outline: 0; font-size: 12px; appearance: auto; }
+.control-field select:focus { border-color: #d6a51e; box-shadow: 0 0 0 3px rgba(214,165,30,.12); }
+.currency-help { margin: -5px 0 16px; color: #9b8d7e; font-size: 10px; line-height: 1.7; }
+.logo-preview { color: #f4b928; background: #111; border: 1px solid rgba(244,185,40,.55); border-radius: 8px; }
+.login-card { background: #161616; border-color: rgba(244,185,40,.3); }
+@media (max-width: 460px) { .brand-mark-svg { width: 38px; height: 38px; padding: 6px; } }
