@@ -27,6 +27,7 @@ export type BoardSettings = {
   unit: string;
   note: string;
   logoUrl: string | null;
+  displayTheme: "gold" | "emerald" | "royal" | "ruby";
 };
 
 export type BoardData = {
@@ -56,6 +57,7 @@ export const defaultBoard: BoardData = {
     unit: "للجرام",
     note: "الأسعار إرشادية وقد تختلف حسب المصنعية والمنتج.",
     logoUrl: null,
+    displayTheme: "gold",
   },
   rates: [
     { label: "ذهب عيار 24", karat: "24K", sellPrice: "0.00", buyPrice: "0.00", change: "0.00", isVisible: true },

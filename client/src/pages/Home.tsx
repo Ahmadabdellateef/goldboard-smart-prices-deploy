@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ArrowLeft, Clock3, ExternalLink, MapPin, RefreshCw, TrendingDown, TrendingUp } from "lucide-react";
+import { ArrowLeft, Clock3, ExternalLink, Instagram, MapPin, RefreshCw, TrendingDown, TrendingUp, X } from "lucide-react";
 import { Link } from "wouter";
 import { defaultBoard, subscribeToBoard, type BoardData } from "@/lib/goldboard";
 
@@ -21,6 +21,7 @@ export default function Home() {
   const [board, setBoard] = useState<BoardData>(defaultBoard);
   const [loading, setLoading] = useState(true);
   const [fetching, setFetching] = useState(false);
+  const [showDeveloper, setShowDeveloper] = useState(false);
   useEffect(() => {
     setFetching(true);
     return subscribeToBoard(data => { setBoard(data); setLoading(false); setFetching(false); }, () => { setLoading(false); setFetching(false); });
@@ -29,7 +30,7 @@ export default function Home() {
   const rates = board.rates.filter(rate => rate.isVisible);
   const featured = rates.find(rate => rate.karat === "21K") ?? rates[0];
   return (
-    <main className="display-page" dir="rtl">
+    <main className={`display-page theme-${settings.displayTheme ?? "gold"}`} dir="rtl">
       <div className="display-noise" aria-hidden="true" />
       <header className="display-header">
         <div className="display-brand"><GoldMark logoUrl={settings.logoUrl} /><div><p className="eyebrow">نشرة السوق اليومية</p><h1>{settings.storeName}</h1></div></div>
@@ -39,11 +40,13 @@ export default function Home() {
         <section className="display-main-column">
           <div className="display-intro"><div><p className="eyebrow eyebrow-gold">أسعار الذهب اليوم</p><h2>{settings.displayTitle}</h2><p className="display-subtitle">قراءة واضحة، تحديث مستمر، وقرار شراء أكثر ثقة.</p></div><div className="last-update-card"><span className="last-update-icon"><Clock3 size={18} /></span><div><span>آخر تحديث · {settings.displayDate || formatDate(board.updatedAt)}</span><strong>{settings.displayTime || formatTime(board.updatedAt)}</strong></div><RefreshCw size={15} className={fetching ? "spin-soft" : ""} /></div></div>
           <div className="rates-heading"><div><span className="rates-index">01</span><h3>قائمة العيارات</h3></div><span className="unit-label">البيع والشراء · {settings.unit} · {settings.currency}</span></div>
-          {loading ? <div className="display-loading">جاري تجهيز نشرة الأسعار...</div> : <div className="rates-list">{rates.map((rate, index) => { const isPositive = Number(rate.change) >= 0; const isFeatured = rate === featured; return <article className={`rate-row ${isFeatured ? "rate-row-featured" : ""}`} key={`${rate.karat}-${index}`}><div className="rate-number">0{index + 1}</div><div className="rate-name"><span className="rate-karat">{rate.karat}</span><strong>{rate.label}</strong></div><div className="rate-price-wrap"><span className="rate-price-label">بيع</span><strong className="rate-price">{formatPrice(rate.sellPrice)}</strong><span className="rate-currency">{settings.currency}</span></div><div className="rate-price-wrap rate-price-buy"><span className="rate-price-label">شراء</span><strong className="rate-price">{formatPrice(rate.buyPrice)}</strong><span className="rate-currency">{settings.currency}</span></div><div className={`rate-change ${isPositive ? "is-positive" : "is-negative"}`}>{isPositive ? <TrendingUp size={17} /> : <TrendingDown size={17} />}<span>{isPositive ? "+" : ""}{formatPrice(rate.change)}</span></div></article>; })}</div>}
+          {loading ? <div className="display-loading">جاري تجهيز نشرة الأسعار...</div> : <div className="rates-list">{rates.map((rate, index) => { const isPositive = Number(rate.change) >= 0; const isFeatured = rate === featured; return <article className={`rate-row ${isFeatured ? "rate-row-featured" : ""}`} key={`${rate.karat}-${index}`}><div className="rate-number">0{index + 1}</div><div className="rate-name"><span className="rate-karat">{rate.karat}</span><strong>{rate.label}</strong></div><div className="rate-price-wrap rate-price-sell"><span className="rate-price-label">سعر البيع</span><strong className="rate-price">{formatPrice(rate.sellPrice)}</strong><span className="rate-currency">{settings.currency}</span></div><div className="rate-price-wrap rate-price-buy"><span className="rate-price-label">سعر الشراء</span><strong className="rate-price">{formatPrice(rate.buyPrice)}</strong><span className="rate-currency">{settings.currency}</span></div><div className={`rate-change ${isPositive ? "is-positive" : "is-negative"}`}>{isPositive ? <TrendingUp size={17} /> : <TrendingDown size={17} />}<span>{isPositive ? "+" : ""}{formatPrice(rate.change)}</span></div></article>; })}</div>}
         </section>
         <aside className="display-side-column"><div className="featured-card"><div className="featured-card-top"><span>العيار الأكثر تداولًا</span><span className="featured-icon">✦</span></div><div className="featured-content"><span className="featured-kicker">{featured?.karat ?? "21K"}</span><strong>{featured ? formatPrice(featured.sellPrice) : "0.00"}</strong><span>سعر البيع · {settings.currency} {settings.unit}</span></div><div className="featured-rule"><span /></div><p>يتغير السعر بحسب السوق العالمي وسعر الصرف.</p></div><div className="info-card"><div className="info-card-head"><span className="info-card-number">02</span><span>معلومات النشرة</span></div><div className="info-line"><MapPin size={16} /><span>{settings.city}</span></div><div className="info-line"><Clock3 size={16} /><span>مزامنة مباشرة من Firestore</span></div><div className="info-line"><ExternalLink size={16} /><span>اسأل فريقنا عن المصنعية</span></div></div><div className="display-note"><span className="note-mark">“</span><p>{settings.note}</p></div></aside>
       </div>
       <footer className="display-footer"><span>© {new Date().getFullYear()} {settings.storeName}</span><span className="footer-status"><span className="live-dot" /> النشرة متصلة</span></footer>
+      <button className="developer-trigger" onClick={() => setShowDeveloper(true)} aria-label="معلومات المطور"><span>◇</span><small>المطور</small></button>
+      {showDeveloper && <div className="developer-overlay" role="dialog" aria-modal="true" aria-labelledby="developer-title" onClick={() => setShowDeveloper(false)}><section className="developer-card" onClick={event => event.stopPropagation()}><button className="developer-close" onClick={() => setShowDeveloper(false)} aria-label="إغلاق"><X size={20} /></button><div className="developer-symbol">◇</div><p className="eyebrow eyebrow-gold">هوية وتطوير</p><h2 id="developer-title">معلومات المطور</h2><p className="developer-name">أحمد عبداللطيف</p><div className="developer-links"><a href="tel:+963951461294"><span>الهاتف</span><strong dir="ltr">+963 951 461 294</strong></a><a href="https://www.instagram.com/0o.b?cplk=bm5zYjdyaHpjeGl3&utm_source=qr" target="_blank" rel="noreferrer"><span>Instagram</span><strong>@0o.b <Instagram size={16} /></strong></a><a href="https://www.facebook.com/share/14xGcdMRvfT/?mibextid=wwXIfr" target="_blank" rel="noreferrer"><span>Facebook</span><strong>صفحة المطور <ExternalLink size={15} /></strong></a><a href="https://ahmad-abdullatif-portfolio.pages.dev" target="_blank" rel="noreferrer"><span>Portfolio</span><strong>ahmad-abdullatif-portfolio.pages.dev <ExternalLink size={15} /></strong></a></div></section></div>}
     </main>
   );
 }
